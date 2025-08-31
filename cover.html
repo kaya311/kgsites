@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy BirthDay Quin</title>
+<link rel="icon" href="IMG-20250830-WA0125.jpg" >
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* Reset and base */
+* { margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', sans-serif;}
+body {
+    background: linear-gradient(135deg, #2c3e50 0%, #1a1a2e 100%);
+    color:#fff;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+/* Header */
+h1 {
+    font-size:3.5rem;
+    color:#ffd700;
+    text-shadow:0 0 15px rgba(255,223,0,0.6);
+    animation: glow 2s infinite alternate;
+}
+.subtitle {
+    font-size:1.4rem;
+    color:#f8f8f8;
+    margin-bottom:0;
+}
+
+/* Cake container */
+.cake-container {
+    position: relative;
+    width: 500px;
+    height: 450px;
+    perspective: 1000px;
+    margin-top: -80px;
+    margin-bottom: 20px;
+}
+.cake-base, .cake, .cake-top, .frosting, .frosting-drip, .decoration {
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+}
+.cake-base {
+    bottom:-20px;
+    width:340px; height:20px;
+    background:linear-gradient(to right, #7d3c08 0%, #a04000 100%);
+    border-radius:5px;
+}
+.cake {
+    bottom:0;
+    width:320px; height:150px;
+    background:linear-gradient(to right, #d35400 0%, #e67e22 100%);
+    border-radius:15px 15px 0 0;
+    box-shadow:0 15px 30px rgba(0,0,0,0.4);
+    transition: transform 0.5s ease;
+}
+.cake:hover { transform: translateX(-50%) rotateX(5deg);}
+.cake-top {
+    top:295px;
+    width:340px; height:50px;
+    background:linear-gradient(to right, #f5b7b1 0%, #f1948a 100%);
+    border-radius:50%;
+    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+.frosting {
+    top:295px;
+    width:340px; height:25px;
+    background:linear-gradient(to right, #f5b7b1 0%, #f1948a 100%);
+    border-radius:50%;
+}
+.frosting-drip {
+    top:295px; left:60px; width:30px; height:40px; background:#f1948a; border-radius:0 0 15px 15px;
+    box-shadow: 60px 10px 0 0 #f1948a,120px 5px 0 0 #f1948a,180px 15px 0 0 #f1948a,240px 8px 0 0 #f1948a;
+}
+.decoration {
+    bottom:10px;
+    width:340px; height:15px;
+    background:linear-gradient(to right, #ff9ff3 0%, #fd79a8 100%);
+    border-radius:5px;
+    box-shadow:0 5px 10px rgba(0,0,0,0.1);
+}
+.sprinkles { position:absolute; top:-35px; width:340px; height:15px; left:50%; transform:translateX(-50%);}
+.sprinkle { position:absolute; width:8px; height:15px; border-radius:3px;}
+.sprinkle:nth-child(1){background:#ff9ff3;top:5px;left:30px;}
+.sprinkle:nth-child(2){background:#feca57;top:2px;left:70px;}
+.sprinkle:nth-child(3){background:#ff6b6b;top:8px;left:110px;}
+.sprinkle:nth-child(4){background:#48dbfb;top:3px;left:150px;}
+.sprinkle:nth-child(5){background:#1dd1a1;top:7px;left:190px;}
+.sprinkle:nth-child(6){background:#feca57;top:4px;left:230px;}
+.sprinkle:nth-child(7){background:#ff9ff3;top:6px;left:270px;}
+.sprinkle:nth-child(8){background:#ff6b6b;top:2px;left:310px;}
+
+/* Candles */
+.candles {
+    position: absolute;
+    /* Move candles to the top of the cake frosting */
+    top: 170px; /* moved down to rest on top of the cake */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 280px;
+    height: auto; /* height of container adjusts to candle height */
+    display: flex;
+    justify-content: space-around;
+    z-index: 10;
+}
+
+.candle {
+    position: relative;
+    width: 24px;
+    height: 140px; /* candle height */
+    background: linear-gradient(to bottom, #ffffff 0%, #e6e6e6 30%, #ffffff 100%);
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    transition: transform 0.3s ease;
+}
+
+.candle:hover { transform: translateY(-5px);}
+.candle:nth-child(2){height:160px;}
+.candle-stripe { position:absolute; width:100%; height:10px; border-radius:5px; }
+.candle-stripe:nth-child(1){top:20px; background:#ff9ff3;}
+.candle-stripe:nth-child(2){top:50px; background:#48dbfb;}
+.candle-stripe:nth-child(3){top:80px; background:#feca57;}
+
+.wick { position:absolute; top:-15px; left:50%; transform:translateX(-50%); width:5px; height:20px; background:#2c3e50; border-radius:2px; z-index:5;}
+
+/* Flame and smoke */
+.flame { position:absolute; top:-45px; left:50%; transform:translateX(-50%); width:24px; height:50px; opacity:0; z-index:5; pointer-events:none; }
+.flame.lit { opacity:1; }
+.flame-outer { position:absolute; top:0; left:50%; transform:translateX(-50%); width:24px; height:50px; background:#ff9d00; border-radius:50% 50% 20% 20%; animation:flicker 3s infinite; box-shadow:0 0 20px #ff9d00,0 0 40px #ff9d00;}
+.flame-inner { position:absolute; top:5px; left:50%; transform:translateX(-50%); width:12px; height:25px; background:#ffff00; border-radius:50% 50% 20% 20%; animation:flicker 2s infinite reverse;}
+.smoke { position:absolute; top:-60px; left:50%; transform:translateX(-50%); width:15px; height:15px; background:rgba(255,255,255,0.8); border-radius:50%; opacity:0; }
+
+/* Sparks */
+.spark { position:absolute; width:3px; height:3px; border-radius:50%; background:yellow; pointer-events:none; animation:sparkMove 1s linear infinite; }
+
+/* Controls */
+.controls { margin:30px 0; display:flex; justify-content:center; gap:20px; flex-wrap:wrap;}
+.btn { padding:15px 40px; font-size:1.2rem; border:none; border-radius:50px; cursor:pointer; display:flex; align-items:center; gap:10px; transition:all 0.3s;}
+.btn-light { background:linear-gradient(to right,#f6d365 0%,#fda085 100%); color:#fff;}
+.btn-blow { background:linear-gradient(to right,#48dbfb 0%,#0abde3 100%); color:#fff;}
+.btn:hover { transform:translateY(-3px);}
+.btn:active { transform:translateY(1px);}
+
+.message { font-size:1.8rem; margin:30px 0; padding:20px; background: rgba(255,255,255,0.1); border-radius:15px; backdrop-filter:blur(5px); animation:fadeIn 2s; color:#ffd700; text-shadow:0 0 10px rgba(255,215,0,0.3);}
+.wishes {
+    font-size:1.3rem;
+    line-height:1.7;
+    max-width:600px;
+    margin:30px auto 0 auto;
+    padding:20px;
+    background:rgba(255,255,255,0.1);
+    border-radius:15px;
+    backdrop-filter:blur(5px);
+    font-family: 'Pacifico', cursive, sans-serif;
+}
+footer { margin-top:50px; opacity:0.8; font-size:0.9rem; color:#ccc; }
+
+/* Animations */
+@keyframes flicker {0%,100%{transform:translateX(-50%) scale(1);height:50px;}25%{transform:translateX(-50%) scale(1.05);height:45px;}50%{transform:translateX(-50%) scale(0.95);height:55px;}75%{transform:translateX(-50%) scale(1.1);height:40px;}}
+@keyframes smoke {0%{opacity:0; transform:translateX(-50%) translateY(0) scale(1);}50%{opacity:0.4;}100%{opacity:0; transform:translateX(calc(-50% + 10px)) translateY(-30px) scale(2);}}
+@keyframes glow {from{text-shadow:0 0 10px rgba(255,215,0,0.6);}to{text-shadow:0 0 20px rgba(255,215,0,0.8),0 0 30px rgba(255,215,0,0.6);}}
+@keyframes fadeIn {from{opacity:0;}to{opacity:1;}}
+@keyframes sparkMove {0%{transform:translate(0,0);opacity:1;}100%{transform:translate(calc(var(--dx)*1px),calc(var(--dy)*1px));opacity:0;}}
+
+/* Confetti */
+.confetti-piece { position:absolute; width:8px; height:8px; background:random(#feca57,#ff6b6b,#ff9ff3,#48dbfb,#1dd1a1); top:0; pointer-events:none; opacity:1; }
+</style>
+</head>
+<body>
+<audio id="bgAudio" src="quin.mp3" autoplay loop></audio>
+
+<h1>Happy Birthday!</h1>
+<p class="subtitle">Light the candles and make your wish!</p>
+<br>
+<div class="wishes">
+    <p>On your special day, may each candle you light bring joy, happiness, and fulfillment to your life.</p>
+    <p>Make a wish as you light the candles - may all your dreams come true!</p>
+</div>
+<div class="message" id="message">Click each wick / the thread of the candle to light it up!</div>
+<div class="cake-container">
+    <div class="cake-base"></div>
+    <div class="cake"></div>
+    <div class="cake-top"></div>
+    <div class="frosting"></div>
+    <div class="decoration"></div>
+    <div class="candles">
+        <div class="candle" data-index="0">
+            <div class="candle-stripe"></div><div class="candle-stripe"></div><div class="candle-stripe"></div>
+            <div class="wick"></div>
+            <div class="flame"><div class="flame-outer"></div><div class="flame-inner"></div></div>
+            <div class="smoke"></div>
+        </div>
+        <div class="candle" data-index="1">
+            <div class="candle-stripe"></div><div class="candle-stripe"></div><div class="candle-stripe"></div>
+            <div class="wick"></div>
+            <div class="flame"><div class="flame-outer"></div><div class="flame-inner"></div></div>
+            <div class="smoke"></div>
+        </div>
+        <div class="candle" data-index="2">
+            <div class="candle-stripe"></div><div class="candle-stripe"></div><div class="candle-stripe"></div>
+            <div class="wick"></div>
+            <div class="flame"><div class="flame-outer"></div><div class="flame-inner"></div></div>
+            <div class="smoke"></div>
+        </div>
+    </div>
+</div>
+
+<div class="controls">
+    <button class="btn btn-light" id="lightAllBtn"><i class="fas fa-fire"></i> Light All Candles</button>
+    <button class="btn btn-blow" id="blowOutBtn"><i class="fas fa-wind"></i> Blow Out Candles</button>
+</div>
+
+<footer>
+<p>MACQUIN</p>
+</footer>
+
+<script>
+// Flame and spark handling
+const candles = document.querySelectorAll('.candle');
+const message = document.getElementById('message');
+function createSparks(candle){
+    for(let i=0;i<5;i++){
+        const spark=document.createElement('div');
+        spark.classList.add('spark');
+        spark.style.setProperty('--dx',(Math.random()*20-10).toFixed(2));
+        spark.style.setProperty('--dy',(-Math.random()*50-10).toFixed(2));
+        spark.style.animationDelay=`${Math.random()}s`;
+        candle.appendChild(spark);
+    }
+}
+
+candles.forEach((candle,index)=>{
+    const flame=candle.querySelector('.flame');
+    const smoke=candle.querySelector('.smoke');
+    createSparks(candle);
+
+    candle.querySelector('.wick').addEventListener('click',()=>{
+        if(!flame.classList.contains('lit')){
+            flame.classList.add('lit');
+            smoke.style.animation='smoke 3s infinite';
+            updateMessage();
+            playSound('ignite');
+        }
+    });
+});
+
+document.getElementById('lightAllBtn').addEventListener('click',()=>{
+    candles.forEach(candle=>{
+        const flame=candle.querySelector('.flame');
+        const smoke=candle.querySelector('.smoke');
+        flame.classList.add('lit');
+        smoke.style.animation='smoke 3s infinite';
+    });
+    message.textContent="All candles are lit! Make your wish!";
+    playSound('ignite');
+});
+
+document.getElementById('blowOutBtn').addEventListener('click',()=>{
+    candles.forEach(candle=>{
+        const flame=candle.querySelector('.flame');
+        const smoke=candle.querySelector('.smoke');
+        flame.classList.remove('lit');
+        smoke.style.animation='';
+    });
+    message.textContent="Your wish has been sent! 🎉";
+    playSound('blow');
+    launchConfetti();
+    // Redirect to back.html after 5 seconds
+    setTimeout(function() {
+        window.location.href = 'back.html';
+    }, 5000);
+});
+
+function updateMessage(){
+    const litCount=[...candles].filter(c=>c.querySelector('.flame').classList.contains('lit')).length;
+    if(litCount===1) message.textContent="One candle is burning bright! Light more.";
+    else if(litCount===2) message.textContent="Two candles glowing! Almost there...";
+    else if(litCount===3) message.textContent="All candles are lit! Make a wish!";
+}
+
+function playSound(type){ console.log(`Play ${type} sound`); }
+
+// Confetti
+function launchConfetti(){
+    for(let i=0;i<150;i++){
+        const c=document.createElement('div');
+        c.classList.add('confetti-piece');
+        c.style.background=`hsl(${Math.random()*360},80%,60%)`;
+        c.style.left=Math.random()*window.innerWidth+'px';
+        c.style.top='-10px';
+        c.style.width=c.style.height=(Math.random()*8+4)+'px';
+        document.body.appendChild(c);
+        let fall=Math.random()*3+2;
+        let sway=Math.random()*100-50;
+        c.animate([{transform:`translate(0,0)`},{transform:`translate(${sway}px,${window.innerHeight+50}px)`}],{duration:4000+Math.random()*2000,iterations:1,easing:'ease-out'});
+        setTimeout(()=>c.remove(),6000);
+    }
+}
+
+// Mouse sway for flames
+document.addEventListener('mousemove', e=>{
+    const x=(e.clientX/window.innerWidth-0.5)*10;
+    const y=(e.clientY/window.innerHeight-0.5)*10;
+    candles.forEach(candle=>{
+        const flame=candle.querySelector('.flame');
+        if(flame.classList.contains('lit')){
+            flame.style.transform=`translateX(calc(-50% + ${x}px)) translateY(${y}px)`;
+        }
+    });
+});
+</script>
+</body>
+</html>

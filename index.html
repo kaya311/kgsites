@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy BirthDay Quin</title>
+  <link rel="icon" href="IMG-20250830-WA0125.jpg" >
+  <style>
+    body {
+  background-image: url(IMG-20250830-WA0126.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .card {
+      background: #dbe9ff;
+      border-radius: 20px;
+      width: 350px;
+      padding: 30px 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .icon {
+  background-image: url("IMG-20250830-WA0125.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 20px auto;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 36px;
+      color: white;
+      box-shadow: 0 0 12px rgba(92, 137, 255, 0.7);
+    }
+
+    .icon span {
+      font-size: 36px;
+    }
+
+    .title {
+      color: #2e5bff;
+      font-weight: 700;
+      font-size: 1.9rem;
+      margin: 0 0 10px 0;
+    }
+
+    .subtitle {
+      font-style: italic;
+      font-size: 1.1rem;
+      margin: 0 0 15px 0;
+      color: #444;
+    }
+
+    .description {
+      font-size: 1rem;
+      color: #5a6472;
+      margin-bottom: 25px;
+    }
+
+    .button {
+      background-color: #377dff;
+      border: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 12px 0;
+      width: 100%;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(55, 125, 255, 0.6);
+      transition: background-color 0.3s ease;
+    }
+
+    .button:hover {
+      background-color: #225ecc;
+    }
+    .signature {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.4rem;
+    color: #ffbf00;
+    margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <audio id="bgAudio" src="intro 0.mp3" autoplay loop></audio>
+  <div class="card">
+    <div class="icon">✨</div>
+    <h1 class="title">Wishes &amp; Dreams</h1>
+    <p class="subtitle">A place where hopes take flight</p>
+    <p class="description">Welcome to our enchanted wishing well.</p>
+    <button class="button">Make a Wish</button>
+    <p class="signature">MACQUIN</p>
+    <script>
+      document.querySelector('.button').addEventListener('click', function() {
+        window.location.href = 'cover.html';
+      });
+    </script>
+  </div>
+</body>
+</html>

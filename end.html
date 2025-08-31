@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <title>Happy BirthDay Quin</title>
+        <link rel="icon" href="IMG-20250830-WA0125.jpg" >
+        <style>
+body {
+    background-image: url("bg.jpg");
+}
+.video-background {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.video-background video {
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -100; /* Puts the video behind all other content */
+}
+
+.content {
+  position: relative;
+  z-index: 1; /* Puts content on top of the video */
+  color: rgb(255, 198, 13);
+  text-align: center;
+  padding-top: 20vh;
+}
+
+    .video-frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 360px;
+  height: 640px;
+  border: 12px solid #fff;
+  border-radius: 32px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Make the video fit inside the frame */
+.video-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: static;
+  min-width: unset;
+  min-height: unset;
+  transform: none;
+  z-index: 0;
+}
+        </style>
+    </head>
+    <body>
+        <div class="video-background">
+  <div class="video-frame">
+    <video id="myVideo" autoplay loop muted playsinline>
+      <source src="VID-20250830-WA0120.mp4" type="video/mp4">
+      <!-- Optionally add a webm version if available -->
+      <!-- <source src="your-video.webm" type="video/webm"> -->
+      Your browser does not support the video tag.
+    </video>
+    <button id="unmuteButton" style="position:absolute;bottom:20px;left:50%;transform:translateX(-50%);z-index:10;padding:12px 32px;font-size:1.1rem;border-radius:24px;border:none;background:#ffc60d;color:#222;box-shadow:0 2px 8px rgba(0,0,0,0.15);cursor:pointer;">Unmute</button>
+  </div>
+  <div class="content">
+    <h1>HAPPY BIRTHDAY</h1>
+    <br>
+    <h1>MY DEAREST QUIN</h1>
+    <br>
+    <p>"Happy birthday! I hope your day is as amazing as you are!"</p>
+  </div>
+</div>
+<script>
+  document.getElementById('unmuteButton').addEventListener('click', function() {
+    var video = document.getElementById('myVideo');
+    var button = document.getElementById('unmuteButton');
+    video.muted = false;
+    button.style.display = 'none'; // Hide the button after the user interacts
+  });
+</script>
+    </body>
+</html>

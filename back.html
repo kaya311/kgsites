@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy BirthDay Quin</title>
+    <link rel="icon" href="IMG-20250830-WA0125.jpg" >
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-image: url('card.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            color: #5d4157;
+            padding: 40px 20px;
+            position: relative;
+        }
+        
+        .card {
+            width: 100%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 50px 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s ease;
+            z-index: 10;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .header {
+            margin-bottom: 140px;
+        }
+        
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #ff6b6b;
+            font-size: 4.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.8);
+            line-height: 1.2;
+            letter-spacing: 1px;
+        }
+        
+        .floating-cakes {
+            position: absolute;
+            width: 100%;
+            height: 120px;
+            top: 200px;
+            left: 0;
+        }
+        
+        .cake {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+            color: white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            z-index: 5;
+            animation: bounce 2.5s infinite alternate;
+        }
+        
+        .cake1 {
+            background: linear-gradient(135deg, #ffb8b8 0%, #ff7b7b 100%);
+            animation-delay: 0s;
+            top: 0;
+            left: 15%;
+        }
+        
+        .cake2 {
+            background: linear-gradient(135deg, #a5dee5 0%, #6ecce8 100%);
+            animation-delay: 0.4s;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .cake3 {
+            background: linear-gradient(135deg, #c9f5d9 0%, #7deea4 100%);
+            animation-delay: 0.8s;
+            top: 0;
+            right: 15%;
+        }
+        
+        .cake-plate {
+            width: 110px;
+            height: 12px;
+            background: #f9f2d7;
+            border-radius: 50%;
+            position: absolute;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            z-index: 4;
+        }
+        
+        .plate1 {
+            top: 80px;
+            left: calc(15% - 10px);
+        }
+        
+        .plate2 {
+            top: 90px;
+            left: calc(50% - 10px);
+            transform: translateX(-50%);
+        }
+        
+        .plate3 {
+            top: 80px;
+            right: calc(15% - 10px);
+        }
+        
+        .cake-name {
+            font-family: 'Pacifico', cursive;
+            color: #ff6b6b;
+            font-size: 1.2rem;
+            position: absolute;
+            z-index: 5;
+        }
+        
+        .name1 {
+            top: 100px;
+            left: 15%;
+        }
+        
+        .name2 {
+            top: 110px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .name3 {
+            top: 100px;
+            right: 15%;
+        }
+        
+        .message {
+            background: linear-gradient(135deg, #d4f0f0 0%, #f9f2d7 100%);
+            padding: 35px 30px;
+            border-radius: 20px;
+            margin: 40px 0;
+            position: relative;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            z-index: 5;
+        }
+        
+        .message p {
+            font-size: 1.4rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            color: #5d4157;
+        }
+        
+        .special-text {
+            font-family: 'Pacifico', cursive;
+            font-size: 2.2rem;
+            color: #ff6b6b;
+            margin: 30px 0;
+            text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.8);
+            line-height: 1.4;
+        }
+        
+        .wish-button {
+            background: linear-gradient(to right, #ff9a9e, #f6d365);
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.4rem;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 30px 0;
+            font-weight: bold;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            z-index: 5;
+            letter-spacing: 0.5px;
+        }
+        
+        .wish-button:hover {
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .wish-button:before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(to right, #f6d365, #ff9a9e);
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .wish-button:hover:before {
+            opacity: 0.7;
+        }
+        
+        .decoration {
+            position: absolute;
+            z-index: 1;
+        }
+        
+        .balloon {
+            width: 50px;
+            height: 60px;
+            border-radius: 50%;
+            animation: float 18s infinite ease-in-out;
+            opacity: 0.8;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .balloon1 { background: #ff6b6b; left: 5%; top: 10%; animation-duration: 15s; }
+        .balloon2 { background: #a5dee5; right: 8%; top: 15%; animation-duration: 18s; }
+        .balloon3 { background: #ffd5df; left: 12%; bottom: 10%; animation-duration: 22s; }
+        .balloon4 { background: #ffc5c5; right: 15%; bottom: 20%; animation-duration: 16s; }
+        
+        .confetti {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            opacity: 0;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            animation: confetti-fall 6s infinite linear;
+        }
+        
+        .bunny {
+            position: absolute;
+            width: 70px;
+            height: 90px;
+            bottom: 30px;
+            left: 40px;
+            z-index: 2;
+        }
+        
+        .bunny-head {
+            width: 60px;
+            height: 55px;
+            background: #f9f2d7;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .bunny-ear {
+            position: absolute;
+            width: 18px;
+            height: 40px;
+            background: #f9f2d7;
+            border-radius: 50%;
+            top: -25px;
+        }
+        
+        .bunny-ear:first-child {
+            left: 12px;
+            transform: rotate(-10deg);
+        }
+        
+        .bunny-ear:last-child {
+            right: 12px;
+            transform: rotate(10deg);
+        }
+        
+        .bunny-eye {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #5d4157;
+            border-radius: 50%;
+            top: 25px;
+            animation: blink 3s infinite;
+        }
+        
+        .bunny-eye:first-child {
+            left: 18px;
+        }
+        
+        .bunny-eye:last-child {
+            right: 18px;
+        }
+        
+        .bunny-nose {
+            position: absolute;
+            width: 12px;
+            height: 10px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: twitch 5s infinite;
+        }
+        
+        footer {
+            margin-top: 40px;
+            font-size: 1.1rem;
+            color: #888;
+            z-index: 5;
+            position: relative;
+        }
+        
+        .signature {
+            font-family: 'Pacifico', cursive;
+            font-size: 1.4rem;
+            color: #ff6b6b;
+            margin-top: 15px;
+        }
+        
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-25px); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-25px) rotate(5deg); }
+        }
+        
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(600px) rotate(360deg); opacity: 0; }
+        }
+        
+        @keyframes blink {
+            0%, 96%, 98%, 100% { transform: scaleY(1); }
+            97%, 99% { transform: scaleY(0.1); }
+        }
+        
+        @keyframes twitch {
+            0%, 95%, 97%, 100% { transform: translateX(-50%) scale(1); }
+            96%, 98% { transform: translateX(-50%) scale(1.2); }
+        }
+        
+        @media (max-width: 700px) {
+            .card {
+                padding: 40px 30px;
+            }
+            
+            h1 { font-size: 3.5rem; }
+            
+            .header {
+                margin-bottom: 120px;
+            }
+            
+            .floating-cakes {
+                top: 170px;
+                height: 100px;
+            }
+            
+            .cake { 
+                width: 75px; 
+                height: 75px; 
+                font-size: 2.5rem; 
+            }
+            
+            .cake-plate {
+                width: 95px;
+            }
+            
+            .plate1 { top: 70px; }
+            .plate2 { top: 80px; }
+            .plate3 { top: 70px; }
+            
+            .name1 { top: 90px; }
+            .name2 { top: 100px; }
+            .name3 { top: 90px; }
+            
+            .message p { font-size: 1.2rem; }
+            .special-text { font-size: 1.8rem; }
+            
+            .wish-button {
+                padding: 16px 40px;
+                font-size: 1.2rem;
+            }
+            
+            .bunny { 
+                transform: scale(0.8); 
+                left: 20px;
+                bottom: 20px;
+            }
+        }
+        
+        @media (max-width: 500px) {
+            h1 { font-size: 2.8rem; }
+            
+            .header {
+                margin-bottom: 100px;
+            }
+            
+            .floating-cakes {
+                top: 150px;
+                height: 90px;
+            }
+            
+            .cake { 
+                width: 65px; 
+                height: 65px; 
+                font-size: 2rem; 
+            }
+            
+            .cake-plate {
+                width: 85px;
+                height: 10px;
+            }
+            
+            .plate1 { top: 60px; left: calc(15% - 8px); }
+            .plate2 { top: 70px; left: calc(50% - 8px); }
+            .plate3 { top: 60px; right: calc(15% - 8px); }
+            
+            .cake-name {
+                font-size: 1rem;
+            }
+            
+            .name1 { top: 80px; }
+            .name2 { top: 90px; }
+            .name3 { top: 80px; }
+            
+            .message {
+                padding: 25px 20px;
+            }
+            
+            .message p { font-size: 1.1rem; }
+            .special-text { font-size: 1.5rem; }
+            
+            .wish-button {
+                padding: 14px 35px;
+                font-size: 1.1rem;
+            }
+            
+            .bunny { 
+                transform: scale(0.7); 
+                left: 10px;
+                bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <audio id="bgAudio" src="teen 1.mp3" autoplay loop></audio>
+    <div class="card">
+        <div class="header">
+            <h1>Happy</h1>
+            <h1>Birthday</h1>
+        </div>
+        
+        <!-- Floating cakes area -->
+        <div class="floating-cakes">
+            <div class="cake cake1"><img src="IMG-20250830-WA0125.jpg" alt="Cake" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></div>
+            <div class="cake-plate plate1"></div>
+            <div class="cake-name name1">Sweetness</div>
+
+            <div class="cake cake2"><img src="IMG-20250830-WA0128.jpg" alt="Cake" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></div>
+            <div class="cake-plate plate2"></div>
+            <div class="cake-name name2">Joy</div>
+
+            <div class="cake cake3"><img src="IMG-20250830-WA0127.jpg" alt="Cake" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;"></div>
+            <div class="cake-plate plate3"></div>
+            <div class="cake-name name3">Love</div>
+        </div>
+        
+        <div class="message">
+            <p>"The only thing we never get enough of is love; and the only thing we never give enough of is love."
+            <p class="special-text">Be blessed and happy this day, my dear!</p>
+        </div>
+        
+        <button class="wish-button" id="wishButton">Make a Birthday Wish!</button>
+        
+        <footer>
+            <p>❤️ Made with ❤️ for your special day ❤️</p>
+            <p class="signature">MACQUIN</p>
+        </footer>
+        
+        <!-- Decorations -->
+        <div class="decoration balloon balloon1"></div>
+        <div class="decoration balloon balloon2"></div>
+        <div class="decoration balloon balloon3"></div>
+        <div class="decoration balloon balloon4"></div>
+        
+        <!-- Cute Bunny -->
+        <div class="bunny">
+            <div class="bunny-head">
+                <div class="bunny-ear"></div>
+                <div class="bunny-ear"></div>
+                <div class="bunny-eye"></div>
+                <div class="bunny-eye"></div>
+                <div class="bunny-nose"></div>
+            </div>
+        </div>
+        
+        <!-- Confetti -->
+        <div id="confetti-container"></div>
+    </div>
+
+    <script>
+        // Create confetti
+        function createConfetti() {
+            const colors = ['#ff6b6b', '#a5dee5', '#ffd5df', '#ffc5c5', '#f6d365', '#ff9a9e'];
+            const container = document.getElementById('confetti-container');
+            
+            for (let i = 0; i < 60; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = (10 + Math.random() * 12) + 'px';
+                confetti.style.height = (10 + Math.random() * 12) + 'px';
+                container.appendChild(confetti);
+            }
+        }
+        
+        // Button effect
+        document.getElementById('wishButton').addEventListener('click', function() {
+            this.textContent = 'Wish Coming True! ✨';
+            this.style.background = 'linear-gradient(to right, #84fab0, #8fd3f4)';
+
+            // Add more confetti
+            createConfetti();
+
+            // Add floating hearts animation
+            const hearts = ['💖', '💝', '💗', '💓', '💞'];
+            for (let i = 0; i < 10; i++) {
+                const heart = document.createElement('div');
+                heart.style.position = 'absolute';
+                heart.style.fontSize = (20 + Math.random() * 20) + 'px';
+                heart.style.left = Math.random() * 80 + 10 + '%';
+                heart.style.bottom = '0';
+                heart.style.opacity = '0';
+                heart.style.zIndex = '10';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.animation = `float ${2 + Math.random() * 2}s ease-in forwards`;
+                document.querySelector('.card').appendChild(heart);
+
+                // Remove hearts after animation
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }
+
+            // Redirect to end.html after 5 seconds
+            setTimeout(() => {
+                window.location.href = 'end.html';
+            }, 5000);
+
+            // Reset button after delay
+            setTimeout(() => {
+                this.textContent = 'Make a Birthday Wish!';
+                this.style.background = 'linear-gradient(to right, #ff9a9e, #f6d365)';
+            }, 3000);
+        });
+        
+        // Initialize on load
+        window.onload = function() {
+            createConfetti();
+            
+            // Add initial floating hearts
+            const hearts = ['💖', '💝', '💗', '💓', '💞'];
+            for (let i = 0; i < 5; i++) {
+                const heart = document.createElement('div');
+                heart.style.position = 'absolute';
+                heart.style.fontSize = (20 + Math.random() * 20) + 'px';
+                heart.style.left = Math.random() * 80 + 10 + '%';
+                heart.style.bottom = '0';
+                heart.style.opacity = '0';
+                heart.style.zIndex = '10';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.animation = `float ${3 + Math.random() * 2}s ease-in ${i}s infinite`;
+                document.querySelector('body').appendChild(heart);
+            }
+        };
+    </script>
+</body>
+</html>
