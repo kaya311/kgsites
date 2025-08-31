@@ -33,31 +33,25 @@ body {
   padding-top: 20vh;
 }
 
-    .video-frame {
+.video-frame {
   position: absolute;
-  top: 100%;
-  left: 100%;
-  transform: translate(-50%, -50%);
-  width: 360px;
-  height: 640px;
-  border: 12px solid #fff;
-  border-radius: 32px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+  top: 0;
+  left: 0;
+  width: 100vw;   /* Full viewport width */
+  height: 100vh;  /* Full viewport height */
+  border: none;   /* remove frame border */
+  border-radius: 0;
+  box-shadow: none;
   overflow: hidden;
   z-index: 0;
 }
 
-/* Make the video fit inside the frame */
 .video-frame video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  position: static;
-  min-width: unset;
-  min-height: unset;
-  transform: none;
-  z-index: 0;
+  object-fit: cover; /* keeps aspect ratio, fills screen */
 }
+
         </style>
     </head>
     <body>
